@@ -13,7 +13,9 @@ describe('check test status', () => {
 
         expect(response.status).toBe(200);
 
-        // expect(response.body).toBe()
+        expect(response.body.status).toBe('success');
+
+        expect(response.body.message).toBe("Welcome to express app")
     });
 });
 
