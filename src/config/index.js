@@ -6,10 +6,19 @@ export default {
   port: process.env.PORT,
   environment: process.env.NODE_ENV || 'development',
 
-  databaseUrl: {
-    development: process.env.DEVELOPMENT_DATABASE_URL,
-    production: process.env.PRODUCTION_DATABASE_URL,
-    test: process.env.TEST_DATABASE_URL,
+  database: {
+    development: {
+      DB_HOST: process.env.DEV_DB_HOST,
+      DB_NAME: process.env.DEV_DB_NAME,
+      DB_USER: process.env.DEV_DB_USER,
+      DB_PASSWORD: process.env.DEV_DB_PASSWORD,
+    },
+    production: {
+
+    },
+    test: {
+
+    },
   },
 
   development: process.env.NODE_ENV === 'development',
