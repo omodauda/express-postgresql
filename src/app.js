@@ -1,7 +1,10 @@
 import express from 'express';
-import { db } from './database';
+import router from './routes';
+import init from './config/db';
 
 const app = express();
+
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res
@@ -12,6 +15,8 @@ app.get('/', (req, res) => {
     });
 });
 
-db();
+app.use('/api/v1/', router);
+
+init();
 
 export default app;

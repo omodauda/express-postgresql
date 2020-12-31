@@ -1,8 +1,9 @@
+import dotenv from 'dotenv';
 import regeneratorRuntime from 'regenerator-runtime';
 import app from './app';
-import config from './config';
 
-const { port } = config;
+dotenv.config();
+const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(`app is running on port ${port}`);
