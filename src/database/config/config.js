@@ -14,7 +14,8 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     database: process.env.TEST_DB,
     host: "localhost",
-    dialect: "postgres"
+    dialect: "postgres",
+    logging: false
   },
   production: {
     url: "postgres",

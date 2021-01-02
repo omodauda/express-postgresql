@@ -2,6 +2,9 @@
 const {
   Model
 } = require('sequelize');
+import bcrypt from 'bcryptjs';
+import { async } from 'regenerator-runtime';
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -35,6 +38,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     }
   }, {
+    hooks: {
+      beforeCreate: async( user, options) => {
+        console.log('i was called')
+        const salt = await bcrypt.genSalt(10);
+        const hashedpassword = await bcrypt.hash(user.password, salt);
+        user.password = hashedpassword;
+      }
+    },
     sequelize,
     modelName: 'User',
   });

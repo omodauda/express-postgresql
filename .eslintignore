@@ -3,4 +3,5 @@ npm-debug.log
 .vscode/**
 src/database
 src/database/models
+jest.config.js
 __tests__
