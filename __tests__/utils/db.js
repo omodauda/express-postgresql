@@ -13,6 +13,7 @@ async function connectDb() {
 
 async function disconnectDb() {
   try{
+    await sequelize.drop();
     await sequelize.close();
     console.log('Connection to test db closed');
   } catch (error){
