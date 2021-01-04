@@ -1,4 +1,6 @@
+import bcrypt from 'bcryptjs';
 import { User, Profile } from '../database/models';
+import { errorMsg, successMsg } from '../utils/response';
 
 export default class UserController {
   static async registerUser(req, res) {
@@ -17,19 +19,26 @@ export default class UserController {
         userId: newUser.id, first_name, last_name, age,
       });
 
-      return res
-        .status(201)
-        .json({
-          status: 'success',
-          message: 'User successfully created',
-        });
+      return successMsg(res, 201, 'user successfully registered');
     } catch (error) {
-      return res
-        .status(500)
-        .json({
-          status: 'fail',
-          error: error.message,
-        });
+      return errorMsg(res, 500, 'Internal server error, pls try again');
+    }
+  }
+
+  static async login(req, res) {
+    try {
+      const { email, password } = req.body;
+      const user = await User.findOne({ where: { email } });
+      if (!user) {
+        return errorMsg(res, 400, `user with email ${email} not registered`);
+      }
+      const isValidPassword = await bcrypt.compare(password, user.password);
+      if (!isValidPassword) {
+        return errorMsg(res, 400, 'Invalid password');
+      }
+      return successMsg(res, 200, 'login successful', user);
+    } catch (error) {
+      return errorMsg(res, 500, 'Internal server error, pls try again');
     }
   }
 }
