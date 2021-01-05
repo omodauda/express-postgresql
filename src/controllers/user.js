@@ -1,6 +1,14 @@
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import { User, Profile } from '../database/models';
 import { errorMsg, successMsg } from '../utils/response';
+
+const signToken = (user) => jwt.sign({
+  iss: 'omodauda',
+  sub: user.id,
+  iat: new Date().getTime(),
+  expiresIn: '7d',
+}, process.env.JWT_SECRET);
 
 export default class UserController {
   static async registerUser(req, res) {
@@ -36,7 +44,8 @@ export default class UserController {
       if (!isValidPassword) {
         return errorMsg(res, 400, 'Invalid password');
       }
-      return successMsg(res, 200, 'login successful', user);
+      const token = signToken(user);
+      return successMsg(res, 200, 'login successful', { token, user });
     } catch (error) {
       return errorMsg(res, 500, 'Internal server error, pls try again');
     }
