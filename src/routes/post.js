@@ -5,11 +5,19 @@ import authenticate from '../utils/jwt';
 const router = new Router();
 
 router
-  .route('/post/create')
+  .route('/posts/create')
   .post(authenticate, PostController.createPost);
 
 router
-  .route('/post/:id/edit')
+  .route('/posts')
+  .get(authenticate, PostController.getAllPosts);
+
+router
+  .route('/posts/:id/edit')
   .patch(authenticate, PostController.editPost);
+
+// router
+//   .route('/posts/:id/delete')
+//   .delete(authenticate, PostController.deletePost);
 
 export default router;

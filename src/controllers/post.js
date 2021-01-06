@@ -14,6 +14,15 @@ export default class PostController {
     }
   }
 
+  static async getAllPosts(req, res) {
+    try {
+      const posts = await Post.findAll();
+      return successMsg(res, 200, '', posts);
+    } catch (error) {
+      return errorMsg(res, 500, 'Internal server error');
+    }
+  }
+
   static async editPost(req, res) {
     const { id } = req.params;
     try {
@@ -24,4 +33,14 @@ export default class PostController {
       return errorMsg(res, 500, 'Internal server error');
     }
   }
+
+  // static async deletePost(req, res) {
+  //   const { id } = req.params;
+  //   try {
+  //     await Post.destroy({ where: { id } });
+  //     return successMsg(res, 200, 'post deleted successfully');
+  //   } catch (error) {
+  //     return errorMsg(res, 500, 'Internal server error');
+  //   }
+  // }
 }
