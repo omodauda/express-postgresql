@@ -50,4 +50,13 @@ export default class UserController {
       return errorMsg(res, 500, 'Internal server error, pls try again');
     }
   }
+
+  static async profile(req, res) {
+    try {
+      const userprofile = await Profile.findOne({ where: { userId: req.user.id } });
+      return successMsg(res, 200, '', userprofile);
+    } catch (error) {
+      return errorMsg(res, 500, 'Internal server error, pls try again');
+    }
+  }
 }
