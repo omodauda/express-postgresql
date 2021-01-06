@@ -15,9 +15,28 @@ export default class PostController {
   }
 
   static async getAllPosts(req, res) {
+    // parse pageNo & size from query
+    const page_number = parseInt(req.query.pageNo, 10);
+    const size = parseInt(req.query.size, 10);
+    // calc no of items to offset
+    const skip = size * (page_number - 1) || 0;
+    // no of items to return per page
+    const limit = size || 5;
+
+    if (page_number <= 0) {
+      return errorMsg(res, 400, 'Invalid page number, should start with 1');
+    }
     try {
-      const posts = await Post.findAll();
-      return successMsg(res, 200, '', posts);
+      const totalCount = await Post.count();
+      const posts = await Post.findAll({ offset: skip, limit });
+      const totalPages = Math.ceil(totalCount / size);
+      const currentPage = page_number;
+      const data = {
+        posts,
+        totalPages,
+        currentPage,
+      };
+      return successMsg(res, 200, '', data);
     } catch (error) {
       return errorMsg(res, 500, 'Internal server error');
     }
