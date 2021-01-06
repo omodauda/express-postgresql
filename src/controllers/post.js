@@ -34,13 +34,13 @@ export default class PostController {
     }
   }
 
-  // static async deletePost(req, res) {
-  //   const { id } = req.params;
-  //   try {
-  //     await Post.destroy({ where: { id } });
-  //     return successMsg(res, 200, 'post deleted successfully');
-  //   } catch (error) {
-  //     return errorMsg(res, 500, 'Internal server error');
-  //   }
-  // }
+  static async deletePost(req, res) {
+    const { id } = req.params;
+    try {
+      await Post.destroy({ where: { id } });
+      return successMsg(res, 200, 'post deleted successfully');
+    } catch (error) {
+      return errorMsg(res, 500, 'Internal server error');
+    }
+  }
 }

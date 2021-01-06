@@ -16,8 +16,8 @@ router
   .route('/posts/:id/edit')
   .patch(authenticate, PostController.editPost);
 
-// router
-//   .route('/posts/:id/delete')
-//   .delete(authenticate, PostController.deletePost);
+router
+  .route('/posts/:id/delete')
+  .delete(authenticate, PostController.deletePost);
 
 export default router;
