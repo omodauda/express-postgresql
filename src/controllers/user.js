@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { User, Profile } from '../database/models';
+import { User, Profile, Post } from '../database/models';
 import { errorMsg, successMsg } from '../utils/response';
 
 const signToken = (user) => jwt.sign({
@@ -53,10 +53,10 @@ export default class UserController {
 
   static async profile(req, res) {
     try {
-      const userprofile = await Profile.findOne({ where: { userId: req.user.id } });
+      const userprofile = await Profile.findOne({ where: { userId: req.user.id }, include: Post });
       return successMsg(res, 200, '', userprofile);
     } catch (error) {
-      return errorMsg(res, 500, 'Internal server error, pls try again');
+      return errorMsg(res, 500, error.message);
     }
   }
 }
