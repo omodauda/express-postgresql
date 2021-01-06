@@ -8,4 +8,8 @@ router
   .route('/post/create')
   .post(authenticate, PostController.createPost);
 
+router
+  .route('/post/:id/edit')
+  .patch(authenticate, PostController.editPost);
+
 export default router;

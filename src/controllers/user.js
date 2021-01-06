@@ -56,7 +56,7 @@ export default class UserController {
       const userprofile = await Profile.findOne({ where: { userId: req.user.id }, include: Post });
       return successMsg(res, 200, '', userprofile);
     } catch (error) {
-      return errorMsg(res, 500, error.message);
+      return errorMsg(res, 500, 'Internal server error');
     }
   }
 }
