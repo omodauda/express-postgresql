@@ -16,4 +16,8 @@ router
   .route('/user/profile')
   .get(authenticate, UserController.profile);
 
+router
+  .route('/user/delete')
+  .delete(UserController.deleteUser);
+
 export default router;

@@ -59,4 +59,14 @@ export default class UserController {
       return errorMsg(res, 500, 'Internal server error');
     }
   }
+
+  static async deleteUser(req, res) {
+    const { email } = req.body;
+    try {
+      await User.destroy({ where: { email } });
+      return successMsg(res, 200, 'user successfully deleted');
+    } catch (error) {
+      return errorMsg(res, 500, 'Internal server error');
+    }
+  }
 }
