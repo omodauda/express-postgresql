@@ -1,6 +1,9 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { User, Profile, Post } from '../database/models';
+import { async } from 'regenerator-runtime';
+import {
+  sequelize, User, Profile, Post,
+} from '../database/models';
 import { errorMsg, successMsg } from '../utils/response';
 
 const signToken = (user) => jwt.sign({
@@ -21,15 +24,18 @@ export default class UserController {
         age,
       } = req.body;
 
-      const newUser = await User.create({ email, password });
+      const result = await sequelize.transaction(async (t) => {
+        const newUser = await User.create({ email, password }, { transaction: t });
 
-      const userprofile = await Profile.create({
-        userId: newUser.id, first_name, last_name, age,
+        const userprofile = await Profile.create({
+          userId: newUser.id, first_name, last_name, age,
+        }, { transaction: t });
+
+        return successMsg(res, 201, 'user successfully registered');
       });
-
-      return successMsg(res, 201, 'user successfully registered');
+      return result;
     } catch (error) {
-      return errorMsg(res, 500, 'Internal server error, pls try again');
+      return errorMsg(res, 500, 'Internal server error');
     }
   }
 
