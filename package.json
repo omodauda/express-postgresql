@@ -9,7 +9,10 @@
     "build": "npx babel src -d lib",
     "build:watch": "npx babel src -d lib --watch",
     "start": "env NODE_ENV=production node lib/index.js",
-    "dev": "env NODE_ENV=development nodemon lib/index.js"
+    "dev": "env NODE_ENV=development nodemon lib/index.js",
+    "db:create": "npx sequelize db:create",
+    "db:migrate": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate",
+    "seed": "npx sequelize db:seed:undo:all && npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
