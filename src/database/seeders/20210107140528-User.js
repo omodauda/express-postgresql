@@ -1,5 +1,5 @@
 'use strict';
-import bcrypt from 'bcryptjs';
+const bcrypt = require('bcryptjs');
 const password = 'seed';
 const hash = bcrypt.hashSync(password, 10);
 
