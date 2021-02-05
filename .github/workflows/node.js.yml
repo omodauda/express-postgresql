@@ -47,7 +47,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - name: Connect to PostgreSQL
-      run:  node src/database/models/index
+      run:  node lib/database/models/index
       env:
         # The hostname used to communicate with the PostgreSQL service container
         POSTGRES_HOST: localhost
