@@ -18,8 +18,7 @@ jobs:
       matrix:
         node-version: [12.x, 14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-    container:
-      image: node:10.18-jessie
+
     # Service containers to run with `runner-job`
     services:
       # Label used to access the service container
@@ -28,9 +27,7 @@ jobs:
         image: postgres
         # Provide the password for postgres
         env:
-          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
@@ -50,12 +47,12 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - name: Connect to PostgreSQL
-      run:  node lib/database/models/index
+      run:  node src/database/models/index
       env:
         # The hostname used to communicate with the PostgreSQL service container
-        POSTGRES_HOST: postgres
+        POSTGRES_HOST: localhost
         # The default PostgreSQL port
         POSTGRES_PORT: 5432
     - run: npm test
-      env: 
+      env:
         NODE_ENV: test
