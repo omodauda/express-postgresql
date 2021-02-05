@@ -54,6 +54,3 @@ jobs:
         # The default PostgreSQL port
         POSTGRES_PORT: 5432
     - run: npm test
-      env:
-        NODE_ENV: test
-        TEST_DB: postgres://postgres:postgres@localhost:5432/postgres
