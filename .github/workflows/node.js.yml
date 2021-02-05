@@ -56,3 +56,4 @@ jobs:
     - run: npm test
       env:
         NODE_ENV: test
+        TEST_DB: postgres://postgres:postgres@localhost:5432/database_test
