@@ -55,7 +55,7 @@ jobs:
         POSTGRES_HOST: localhost
         # The default PostgreSQL port
         POSTGRES_PORT: 5432
-        NODE_ENV: CI
+        NODE_ENV: 'CI'
     - run: npm test
       env:
         POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
