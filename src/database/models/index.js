@@ -9,12 +9,6 @@ const config = require(`${__dirname}/../config/config.js`)[env];
 const db = {};
 
 let sequelize;
-if(process.env.NODE_ENV === 'CI'){
-  sequelize = new Sequelize("postgres", "postgres", "postgres", {
-    host: "localhost",
-    dialect: "postgres"
-  });
-}
 if (config.url) {
   sequelize = new Sequelize(config.url, config);
 } else {
