@@ -10,4 +10,4 @@ before_script:
   - npm install
   - psql -c 'create database database_test;' -U postgres
 script:
-  -npm run test
+  - npm run test
