@@ -5,7 +5,7 @@ async function connectDb() {
   try{
     await sequelize.authenticate();
     console.log('Successfully connected to test db');
-    await sequelize.sync({ alter: true, match: /_test$/ });
+    await sequelize.sync({ alter: true});
   } catch(error) {
     console.error('Unable to connect to the database:', error);
   }
