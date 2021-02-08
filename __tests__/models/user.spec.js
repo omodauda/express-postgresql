@@ -27,7 +27,13 @@ describe('The User model', () => {
   });
 
   it('should hash user password before saving', async() => {
+    expect(newUser.dataValues.password).not.toMatch('testing');
+  });
+
+  it('confirm saved data values', async() => {
+    expect(newUser.dataValues.email).toBe('test@yahoo.com');
     expect(bcrypt.compareSync(user.password, newUser.dataValues.password)).toBe(true);
+    expect(newUser.dataValues.id).toEqual(expect.stringMatching(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/))
   });
 
 })
