@@ -20,6 +20,7 @@ describe('The User model', () => {
     await connectDb();
 
     newUser = await User.create(user);
+    // console.log(newUser.dataValues)
   });
 
   afterAll(async() => {
