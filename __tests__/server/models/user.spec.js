@@ -3,7 +3,7 @@
 */
 
 import { async } from 'regenerator-runtime';
-import { User } from '../../src/database/models';
+import { User } from '../../../src/database/models';
 import bcrypt from 'bcryptjs';
 import { connectDb, disconnectDb } from '../utils/db';
 

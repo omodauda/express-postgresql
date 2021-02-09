@@ -3,7 +3,7 @@
 */
 
 import { async } from 'regenerator-runtime';
-import { User, Profile } from '../../src/database/models';
+import { User, Profile } from '../../../src/database/models';
 import { connectDb, disconnectDb} from '../utils/db';
 
 describe('The Profile model', () => {

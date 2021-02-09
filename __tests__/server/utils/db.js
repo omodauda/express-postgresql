@@ -1,5 +1,5 @@
 import { async } from 'regenerator-runtime';
-import {sequelize} from '../../src/database/models';
+import {sequelize} from '../../../src/database/models';
 
 async function connectDb() {
   try{

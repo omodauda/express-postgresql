@@ -2,7 +2,7 @@
   jest-environment node
 */
 import { async } from 'regenerator-runtime';
-import { User, Profile, Post } from '../../src/database/models';
+import { User, Profile, Post } from '../../../src/database/models';
 import { connectDb, disconnectDb} from '../utils/db';
 
 describe('This describes the Post model', () => {
