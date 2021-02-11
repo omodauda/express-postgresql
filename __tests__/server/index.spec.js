@@ -1,6 +1,6 @@
 /* @jest-environment node */
 import regeneratorRuntime from 'regenerator-runtime';
-import server from '../src/app';
+import server from '../../src/app';
 import supertest from 'supertest';
 
 const app = () => supertest(server);
