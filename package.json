@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint src/ --fix",
     "test": "env NODE_ENV=test jest",
-    "coveralls": "env NODE_ENV=test jest --coverage && cat ./tests/coverage/lcov.info | coveralls",
+    "coveralls": "env NODE_ENV=test jest --coverage && cat ./coverage/lcov.info | coveralls",
     "build": "npx babel src -d lib",
     "build:watch": "npx babel src -d lib --watch",
     "start": "env NODE_ENV=production node lib/index.js",
