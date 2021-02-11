@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/ --fix",
-    "test": "env NODE_ENV=test nyc jest",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "coverage": "nyc report --reporter=text-lcov | coveralls && nyc report --reporter=lcov",
+    "test": "env NODE_ENV=test jest",
+    "coveralls": "env NODE_ENV=test jest --coverage && cat ./__tests__/coverage/lcov.info | coveralls",
     "build": "npx babel src -d lib",
     "build:watch": "npx babel src -d lib --watch",
     "start": "env NODE_ENV=production node lib/index.js",
