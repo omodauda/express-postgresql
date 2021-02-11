@@ -25,6 +25,7 @@ describe('The Profile model', () => {
   beforeAll(async() => {
     await connectDb();
     newUser = await User.create(user);
+    profile = await Profile.create({userId: newUser.dataValues.id, ...userProfile});
   });
 
   afterAll(async() => {
@@ -32,7 +33,6 @@ describe('The Profile model', () => {
   });
 
   it("should create a profile with the userId", async()=> {
-    profile = await Profile.create({userId: newUser.dataValues.id, ...userProfile});
     expect(profile.dataValues.first_name).toBe('test');
     expect(profile.dataValues.last_name).toBe('master');
   });

@@ -24,6 +24,11 @@ export default class UserController {
         age,
       } = req.body;
 
+      const existingUser = await User.findOne({ where: { email } });
+      if (existingUser) {
+        return errorMsg(res, 400, `user with email ${email} already exist`);
+      }
+
       const result = await sequelize.transaction(async (t) => {
         const newUser = await User.create({ email, password }, { transaction: t });
 
