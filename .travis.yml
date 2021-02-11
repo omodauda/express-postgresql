@@ -13,3 +13,10 @@ before_script:
   - psql -c 'create database database_test;' -U postgres
 script:
   - npm run test
+after_script:  
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+after_success:
+  - npm run coverage
+  - npm run coveralls
+notifications:
+  email: false
