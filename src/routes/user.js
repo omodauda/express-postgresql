@@ -18,6 +18,6 @@ router
 
 router
   .route('/user/delete')
-  .delete(UserController.deleteUser);
+  .delete(authenticate, UserController.deleteUser);
 
 export default router;
