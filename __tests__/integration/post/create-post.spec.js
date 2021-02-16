@@ -46,6 +46,10 @@ describe('create post process', () => {
     const response = await app().post('/api/v1/posts/create').send(post).set(headers);
 
     expect(response.status).toBe(201);
-    
-  })
+    expect(response.body).toHaveProperty('status', 'success');
+    expect(response.body).toHaveProperty('message', 'new post created');
+    expect(response.body).toHaveProperty('data');
+    expect(response.body.data).toHaveProperty('title', 'test post');
+    expect(response.body.data).toHaveProperty('content', 'This is a test post!');
+  });
 })
