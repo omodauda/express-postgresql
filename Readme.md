@@ -1,0 +1,2 @@
+[![Coverage Status](https://coveralls.io/repos/github/omodauda/express-postgresql/badge.svg?branch=master)](https://coveralls.io/github/omodauda/express-postgresql?branch=master)
+[![Build Status](https://travis-ci.com/omodauda/express-postgresql.svg?branch=master)](https://travis-ci.com/omodauda/express-postgresql)
