@@ -1,4 +1,4 @@
-import { Post, Profile } from '../database/models';
+import { Post, Profile, Comment } from '../database/models';
 import { successMsg, errorMsg } from '../utils/response';
 
 export default class PostController {
@@ -28,7 +28,8 @@ export default class PostController {
     }
     try {
       const totalCount = await Post.count();
-      const posts = await Post.findAll({ offset: skip, limit });
+      const posts = await Post.findAll({ include: Comment, offset: skip, limit });
+      // const posts = await Post.findAll({ include: Comment });
       const totalPages = Math.ceil(totalCount / size);
       const currentPage = page_number;
       const data = {
