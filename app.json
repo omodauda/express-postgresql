@@ -10,6 +10,6 @@
     }
   ],
   "scripts": {
-    "postdeploy": "npm run db:migrate && npm run seed"
+    "postdeploy": "node_modules/.bin/sequelize db:migrate"
   }
 }
